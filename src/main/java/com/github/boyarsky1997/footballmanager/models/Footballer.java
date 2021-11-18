@@ -27,6 +27,10 @@ public class Footballer implements Serializable {
     @Column(name = "transfer_price")
     private int transferPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     public Footballer() {
     }
 
@@ -57,6 +61,14 @@ public class Footballer implements Serializable {
     public String getFirstName() {
         return firstName;
     }
+
+//    public Team getTeam() {
+//        return team;
+//    }
+
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
