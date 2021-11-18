@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h1>Блог сайта</h1>
+        <div class="alert alert-info mt-2">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col" th:each="el:${all}">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
+                        <div class="card-body">
+                            <!--/*@thymesVar id="name" type=""*/-->
+                            <p class="card-text" th:text="${el.name}"></p>
+                            <!--/*@thymesVar id="firstName" type=""*/-->
+                            <p class="card-text" th:text="${el.firstName}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container" mt-7>-->
+<!--    -->
+<!--    <div th:each="el:${posts}" class="alert alert-info mt-2">-->
+<!--        <h3 th:text="${el.title}"/>-->
+<!--        <p th:text="${el.anons}"/>-->
+<!--        <a th:href="'/blog/' + ${el.getPostId()}"/>Детальніше<a/>-->
+<!--    </div>-->
+
+<!--</div>-->
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>
