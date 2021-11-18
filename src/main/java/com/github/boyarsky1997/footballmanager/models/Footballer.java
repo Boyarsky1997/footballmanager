@@ -62,13 +62,13 @@ public class Footballer implements Serializable {
         return firstName;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
+    public Team getTeam() {
+        return team;
+    }
 
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

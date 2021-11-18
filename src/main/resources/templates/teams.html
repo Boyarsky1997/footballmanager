@@ -14,7 +14,8 @@
         <div class="alert alert-info mt-2">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col" th:each="el:${all}">
+                <!--/*@thymesVar id="t" type=""*/-->
+                <div class="col" th:each="el:${teams}">
                     <div class="card shadow-sm">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
@@ -23,22 +24,8 @@
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                         </svg>
                         <div class="card-body">
-                            <!--/*@thymesVar id="name" type=""*/-->
                             <p class="card-text" th:text="${el.name}"></p>
-                            <!--/*@thymesVar id="firstName" type=""*/-->
-                            <p class="card-text" th:text="${el.firstName}"></p>
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <form th:action="'/footballer/' + ${el.getFootballerId()}">
-                                        <input type="submit" value="View" class="btn btn-sm btn-outline-secondary"/>
-                                    </form>
-                                        <form th:action="'/footballer/'+ ${el.getFootballerId()}+'/edit/'">
-                                            <input type="submit" value="Edit"
-                                                   class="btn btn-sm btn-outline-secondary"/>
-                                        </form>
-                                </div>
-                            </div>
+                            <p class="card-text" th:text="${el.city}"></p>
                         </div>
                     </div>
                 </div>

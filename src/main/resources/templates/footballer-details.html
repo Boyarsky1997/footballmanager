@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title>Блог сайта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="container" mt-7>
+    <h1>Детально</h1>
+    <div th:each="el:${footballer}" class="alert alert-info mt-2">
+        <!--/*@thymesVar id="getName" type=""*/-->
+        <h3 th:text="${el.getName()}"/>
+        <p th:text="${el.getFirstName()}"/>
+        <p th:text="${el.getTeam().getName()}"/>
+        <p th:text="${el.getAge()}"/>
+<!--        <a  th:href="'/profile/' + ${el.getClient().getClientId()}"style="float:right"   th:text="Автор +'   '+${el.client.firstName}+' '+ ${el.client.lastName}"/>-->
+
+    </div>
+</div>
+
+</div>
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>
