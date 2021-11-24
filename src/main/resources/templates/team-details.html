@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title>Блог сайта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="container" mt-7>
+    <h1>Детально</h1>
+    <!--/*@thymesVar id="team" type=""*/-->
+    <div th:each="el:${team}" class="alert alert-info mt-2">
+        <form action="footballer-add.html"method="get">
+            <a th:href="'/team/' + ${el.team_id}+'/footballer/add'" style="float: right" >Додати гравця</a>
+        </form>
+        <h3 th:text="${el.name}"/>
+        <p th:text="${el.city}"/>
+        <p th:text="${el.country}"/>
+        <p th:text="${el.teamAccount}"/>
+        <h1>Склад команди:</h1>
+        <div th:each="el:${footballers}" class="alert alert-info mt-2">
+            <a th:href="'/footballer/' + ${el.getFootballerId()}" style="float:left"
+               th:text="${el.getName()}+' '+ ${el.getFirstName()}"/>
+        </div>
+
+    </div>
+</div>
+
+</div>
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>

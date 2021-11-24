@@ -16,9 +16,9 @@
         <p th:text="${el.getFirstName()}"/>
         <p th:text="${el.getTeam().getName()}"/>
         <p th:text="${el.getAge()}"/>
-<!--        <a  th:href="'/profile/' + ${el.getClient().getClientId()}"style="float:right"   th:text="Автор +'   '+${el.client.firstName}+' '+ ${el.client.lastName}"/>-->
-
+        <a th:href="'/team/' + ${el.getTeam().getTeam_id()} + '/footballer/' + ${el.getFootballerId()} + '/remove'"/>Видалити<a/>
     </div>
+
 </div>
 
 </div>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title>Блог</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="container" mt-7>
+    <h1>Редагування профіля гравця</h1>
+    <!--/*@thymesVar id="post" type=""*/-->
+    <!--/*@thymesVar id="footballerEdit" type=""*/-->
+    <div th:each="el : ${teamEdit}">
+        <form th:method="post">
+            <!--/*@thymesVar id="name" type=""*/-->
+            <input type="text" th:value="${el.name}" name="name" placeholder="Введіть назву команди" class="form-control"><br>
+            <input type="text" th:value="${el.city}" name="city" placeholder="Введіть місто команди" class="form-control"><br>
+            <input type="text" th:value="${el.country}" name="country" placeholder="Введіть країну команди" class="form-control"><br>
+            <input type="text" th:value="${el.teamAccount}" name="teamAccount" placeholder="Введіть капітал командт" class="form-control"><br>
+
+            <!--            <textarea name="fullText" placeholder="Введіть повний текст" class="form-control" th:text="${el.fullText}"> </textarea>-->
+            <button type="submit" class="btn btn-success">Змінити</button>
+        </form>
+    </div>
+
+</div>
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>

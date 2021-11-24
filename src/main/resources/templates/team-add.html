@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:fh="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="title" type=""*/-->
+    <title>Реєстрація</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="/blocks/header.html :: header"></header>
+<div class="container" mt-7>
+    <h1>Додати команду</h1>
+    <form action="/team/add" method="post">
+        <input type="text" name="name" placeholder="Введіть назву кманди" class="form-control"><br>
+        <input type="text" name="city" placeholder="Введіть місто команди " class="form-control"><br>
+        <input type="text" name="country" placeholder="Введіть країну команди" class="form-control"><br>
+        <input type="text" name="team_account" placeholder="Введіть загальний бюджет команди" class="form-control"><br>
+
+        <button type="submit" class="btn btn-success">Додати команду</button>
+    </form>
+
+</div>
+<footer th:insert="/blocks/footer.html:: footer"></footer>
+</body>
+</html>

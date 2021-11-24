@@ -5,11 +5,14 @@ import com.github.boyarsky1997.footballmanager.repo.FootballerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -26,7 +29,7 @@ public class FootballerController {
 
 
     @GetMapping("/footballer/{id}")
-    public String blogDetails(@PathVariable(value = "id") int id, Model model) {
+    public String footballerDetails(@PathVariable(value = "id") int id, Model model) {
         Optional<Footballer> footballer = footballerRepo.findById(id);
         model.addAttribute("footballer", footballer.get());
         return "footballer-details";
@@ -38,6 +41,8 @@ public class FootballerController {
         model.addAttribute("footballerEdit", footballerEdit.get());
         return "footballer-edit";
     }
+
+
 
     @PostMapping("/footballer/{id}/edit")
     public String footballerPostEdit(@PathVariable(value = "id") int id, @RequestParam String name,
@@ -52,4 +57,11 @@ public class FootballerController {
         model.addAttribute("footballerEdit", footballer);
         return "redirect:/footballer/" + id;
     }
+
+    @GetMapping("/team/{id1}/footballer/{id2}/remove")
+    public String footballerRemove(@PathVariable(value = "id1") int id1, @PathVariable(value = "id2") int id2) {
+        footballerRepo.deleteById(id2);
+        return "redirect:/team/" + id1;
+    }
+
 }
