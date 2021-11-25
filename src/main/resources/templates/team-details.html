@@ -14,6 +14,11 @@
     <div th:each="el:${team}" class="alert alert-info mt-2">
         <form action="footballer-add.html"method="get">
             <a th:href="'/team/' + ${el.team_id}+'/footballer/add'" style="float: right" >Додати гравця</a>
+
+        </form>
+        <form action="footballer-add.html"method="get">
+            <a th:href="'/team/' + ${el.team_id}+'/buy'" style="float: right" >Купити гравця</a>
+
         </form>
         <h3 th:text="${el.name}"/>
         <p th:text="${el.city}"/>

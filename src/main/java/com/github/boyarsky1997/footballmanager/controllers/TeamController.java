@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class TeamController {
@@ -59,6 +61,48 @@ public class TeamController {
         }
         footballerRepo.save(footballer);
         return "redirect:/team/" + id;
+    }
+
+    @GetMapping("/team/{id}/buy")
+    public String footballerBuyGet(@PathVariable(value = "id") int id, Model model) {
+        List<Team> teams = StreamSupport.stream(teamRepo.findAll().spliterator(), false)
+                .filter(team -> !team.equals(teamRepo.findById(id).get()))
+                .collect(Collectors.toList());
+        model.addAttribute("teams", teams);
+        model.addAttribute("id", id);
+        return "footballer-buy";
+    }
+
+    @GetMapping("/team/{id1}/buy/{id2}/footballers")
+    public String footballerBuyGet1(@PathVariable(value = "id1") int id1, @PathVariable(value = "id2") int id2, Model model) {
+        List<Footballer> collect = StreamSupport.stream(footballerRepo.findAll().spliterator(), false)
+                .filter(footballer -> footballer.getTeam().getTeam_id() == id2)
+                .collect(Collectors.toList());
+        model.addAttribute("collect", collect);
+        model.addAttribute("id", id1);
+        return "footballer-buy-footballers";
+    }
+
+    @PostMapping("/team/{id1}/buy/{id2}/footballers/{id3}")
+    public String footballerBuyPost1(@PathVariable(value = "id1") int id1,
+                                     @PathVariable(value = "id2") int id2,
+                                     @PathVariable(value = "id3") int id3, Model model) {
+        Team team1 = teamRepo.findById(id1).get();
+        Team team2 = teamRepo.findById(id2).get();
+        Footballer footballer = footballerRepo.findById(id3).get();
+        if (team1.getTeamAccount() > footballer.getTransferPrice()) {
+            double v = team1.getTeamAccount() - footballer.getTransferPrice();
+            team1.setTeamAccount(v);
+            double v1 = team2.getTeamAccount() + footballer.getTransferPrice();
+            team2.setTeamAccount(v1);
+            teamRepo.save(team1);
+            teamRepo.save(team2);
+            footballer.setTeam(team1);
+            footballerRepo.save(footballer);
+            return "redirect:/team/" + team1.getTeam_id();
+        }
+        model.addAttribute("message",true);
+        return "redirect:/team/" + team1.getTeam_id() + "/buy/" + team2.getTeam_id() + "/footballers";
     }
 
     @GetMapping("/team/{id}")
